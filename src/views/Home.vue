@@ -335,8 +335,10 @@ export default {
 
   .mainList {
     width: 20%;
-    margin: 2.5%;
     height: 80%;
+    margin: 2.5%;
+    padding-left: 10px;
+    box-sizing: border-box;
     overflow: auto;
   }
 
