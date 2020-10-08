@@ -5,6 +5,13 @@
 </template>
 
 <style>
+@font-face {
+	font-family: 'Roboto';
+	src: url('fonts/Roboto/Roboto-Medium.ttf');
+	font-style: normal;
+	font-weight: 400;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -31,6 +38,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+	font-family: 'Roboto';
 	line-height: 1;
 }
 ol, ul {

@@ -17,8 +17,9 @@
       </Lmap>
       <ul class="mainList">
         <li>
+          <h3>Wybierz wszystkie województwa</h3>
           <input type="checkbox" id="selectAllVoivodeship" @click="selectAllVoivodeship" checked>
-          <label for="selectAllVoivodeship">Wybierz wszystkie województwa</label>
+          <label for="selectAllVoivodeship">Zaznacz/Odznacz wszystkie</label>
           <ul>
             <li>
               <input type="checkbox" id="dolnoslaskie" value="DOLNOŚLĄSKIE" v-model="checkedVoivodeship">
@@ -87,8 +88,9 @@
           </ul>
         </li>
         <li>
+          <h3>Wybierz status stacji</h3>
           <input type="checkbox" id="selectAllStatus" @click="selectAllStatus" checked>
-          <label for="selectAllStatus">Wybierz status stacji</label>
+          <label for="selectAllStatus">Zaznacz/odznacz wszystkie</label>
           <ul>
             <li>
               <input type="checkbox" id="aktywny" value="aktywny" v-model="checkedStatus">
@@ -101,8 +103,9 @@
           </ul>
         </li>
         <li>
+          <h3>Wybierz typ stacji</h3>
           <input type="checkbox" id="selectAllType" @click="selectAllType" checked>
-          <label for="selectAllType">Wybierz typ stacji</label>
+          <label for="selectAllType">Zaznacz/odznacz wszystkie</label>
           <ul>
             <li>
               <input type="checkbox" id="przemyslowa" value="przemysłowa" v-model="checkedType">
@@ -119,8 +122,9 @@
           </ul>
         </li>
         <li>
+          <h3>Wybierz rodzaj obszaru stacji</h3>
           <input type="checkbox" id="selectAllAreaType" @click="selectAllAreaType" checked>
-          <label for="selectAllAreaType">Wybierz rodzaj obszaru stacji</label>
+          <label for="selectAllAreaType">Zaznacz/odznacz wszystkie</label>
           <ul>
             <li>
               <input type="checkbox" id="podmiejski" value="podmiejski" v-model="checkedAreaType">
@@ -254,6 +258,20 @@ export default {
     }
   }
 
+  .mainList {
+    width: 20%;
+    margin: 2.5%;
+  }
+
+  .mainList h3{
+    padding: 10px 0;
+    font-size: 24px;
+  }
+
+  .mainList label{
+    font-size: 16px;
+  }
+
   @media (min-width: 1080px) {
   .mapBox {
     display: flex;
@@ -262,11 +280,6 @@ export default {
       height: 80%;
       margin: 2.5%;
     }
-  }
-
-  .mainList {
-    width: 20%;
-    margin: 2.5%;
   }
 }
 </style>
