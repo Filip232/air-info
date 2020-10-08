@@ -1,7 +1,7 @@
 <template>
-  <div class="xD">
+  <div>
     <div class="mapBox">
-      <LMap :zoom="zoom" :center="center" style="height: 800px; width: 80%; margin: 0 auto">
+      <LMap :zoom="zoom" :center="center" class="mapBox--mapStyle">
         <LTileLayer :url="url" :attribution="attribution"></LTileLayer>
         <template v-for="marker in stations">
         <LMarker :key="marker.nr" :lat-lng="convertIntoPosition(marker)" v-if="checkedVoivodeship.includes(marker.wojewodztwo) && checkedStatus.includes(marker.status) && checkedType.includes(marker.typStacji) && checkedAreaType.includes(marker.typObszaru)">
@@ -15,67 +15,128 @@
         </template>
         <LPolygon :lat-lngs="coordinates"></LPolygon>
       </Lmap>
-      <div class="mainList"> 
-        <input type="checkbox" id="selectAllVoivodeship" @click="selectAllVoivodeship" checked>
-        <label for="selectAllVoivodeship">Wybierz wszystkie województwa</label>
-        <input type="checkbox" id="dolnoslaskie" value="DOLNOŚLĄSKIE" v-model="checkedVoivodeship">
-        <label for="dolnoslaskie">Dolnośląskie</label>
-        <input type="checkbox" id="kujawsko-pomorskie" value= "KUJAWSKO-POMORSKIE" v-model="checkedVoivodeship">
-        <label for="kujawsko-pomorskie">Kujawsko-pomorskie</label>
-        <input type="checkbox" id="lubelskie" value="LUBELSKIE" v-model="checkedVoivodeship">
-        <label for="lubelskie">Lubelskie</label>
-        <input type="checkbox" id="lodzkie" value="ŁÓDZKIE" v-model="checkedVoivodeship">
-        <label for="lodzkie">Łódzkie</label>
-        <input type="checkbox" id="lubuskie" value= "LUBUSKIE" v-model="checkedVoivodeship">
-        <label for="lubuskie">Lubuskie</label>
-        <input type="checkbox" id="malopolskie" value= "MAŁOPOLSKIE" v-model="checkedVoivodeship">
-        <label for="malopolskie">Małopolskie</label>
-        <input type="checkbox" id="mazowieckie" value= "MAZOWIECKIE" v-model="checkedVoivodeship">
-        <label for="mazowieckie">Mazowieckie</label>
-        <input type="checkbox" id="opolskie" value= "OPOLSKIE" v-model="checkedVoivodeship">
-        <label for="opolskie">Opolskie</label>
-        <input type="checkbox" id="podlaskie" value= "PODLASKIE" v-model="checkedVoivodeship">
-        <label for="podlaskie">Podlaskie</label>
-        <input type="checkbox" id="podkarpackie" value= "PODKARPACKIE" v-model="checkedVoivodeship">
-        <label for="podkarpackie">Podkarpackie</label>
-        <input type="checkbox" id="pomorskie" value= "POMORSKIE" v-model="checkedVoivodeship">
-        <label for="pomorskie">Pomorskie</label>
-        <input type="checkbox" id="swietokrzyskie" value= "ŚWIĘTOKRZYSKIE" v-model="checkedVoivodeship">
-        <label for="swietokrzyskie">Świętokrzyskie</label>
-        <input type="checkbox" id="slaskie" value= "ŚLĄSKIE" v-model="checkedVoivodeship">
-        <label for="slaskie">Śląskie</label>
-        <input type="checkbox" id="warminsko-mazurskie" value= "WARMIŃSKO-MAZURSKIE" v-model="checkedVoivodeship">
-        <label for="warminsko-mazurskie">Warmińsko-mazurskie</label>
-        <input type="checkbox" id="wielkopolskie" value= "WIELKOPOLSKIE" v-model="checkedVoivodeship">
-        <label for="wielkopolskie">Wielkopolskie</label>
-        <input type="checkbox" id="zachodniopomorskie" value= "ZACHODNIOPOMORSKIE" v-model="checkedVoivodeship">
-        <label for="zachodniopomorskie">Zachodniopomorskie</label>
-
-        <input type="checkbox" id="selectAllStatus" @click="selectAllStatus" checked>
-        <label for="selectAllStatus">Wybierz status stacji</label>
-        <input type="checkbox" id="aktywny" value="aktywny" v-model="checkedStatus">
-        <label for="aktywny">Aktywny</label>
-        <input type="checkbox" id="nieaktywny" value="nieaktywny" v-model="checkedStatus">
-        <label for="nieaktywny">Nieaktywny</label>
-
-        <input type="checkbox" id="selectAllType" @click="selectAllType" checked>
-        <label for="selectAllType">Wybierz typ stacji</label>
-        <input type="checkbox" id="przemyslowa" value="przemysłowa" v-model="checkedType">
-        <label for="przemyslowa">Przemysłowa</label>
-        <input type="checkbox" id="tlo" value="tło" v-model="checkedType">
-        <label for="tlo">Tło</label>
-        <input type="checkbox" id="komunikacyjna" value="komunikacyjna" v-model="checkedType">
-        <label for="komunikacyjna">Komunikacyjna</label>
-
-        <input type="checkbox" id="selectAllAreaType" @click="selectAllAreaType" checked>
-        <label for="selectAllAreaType">Wybierz rodzaj obszaru stacji</label>
-        <input type="checkbox" id="podmiejski" value="podmiejski" v-model="checkedAreaType">
-        <label for="podmiejski">Podmiejski</label>
-        <input type="checkbox" id="miejski" value="miejski" v-model="checkedAreaType">
-        <label for="miejski">Miejski</label>
-        <input type="checkbox" id="pozamiejski" value="pozamiejski" v-model="checkedAreaType">
-        <label for="pozamiejski">Pozamiejski</label>
-      </div>
+      <ul class="mainList">
+        <li>
+          <input type="checkbox" id="selectAllVoivodeship" @click="selectAllVoivodeship" checked>
+          <label for="selectAllVoivodeship">Wybierz wszystkie województwa</label>
+          <ul>
+            <li>
+              <input type="checkbox" id="dolnoslaskie" value="DOLNOŚLĄSKIE" v-model="checkedVoivodeship">
+              <label for="dolnoslaskie">Dolnośląskie</label>
+            </li>
+            <li>
+              <input type="checkbox" id="kujawsko-pomorskie" value= "KUJAWSKO-POMORSKIE" v-model="checkedVoivodeship">
+              <label for="kujawsko-pomorskie">Kujawsko-pomorskie</label>
+            </li>
+            <li>
+              <input type="checkbox" id="lubelskie" value="LUBELSKIE" v-model="checkedVoivodeship">
+              <label for="lubelskie">Lubelskie</label>
+            </li>
+            <li>
+              <input type="checkbox" id="lodzkie" value="ŁÓDZKIE" v-model="checkedVoivodeship">
+              <label for="lodzkie">Łódzkie</label>
+            </li>
+            <li>
+              <input type="checkbox" id="lubuskie" value= "LUBUSKIE" v-model="checkedVoivodeship">
+              <label for="lubuskie">Lubuskie</label>
+            </li>
+            <li>
+              <input type="checkbox" id="malopolskie" value= "MAŁOPOLSKIE" v-model="checkedVoivodeship">
+              <label for="malopolskie">Małopolskie</label>
+            </li>
+            <li>
+              <input type="checkbox" id="mazowieckie" value= "MAZOWIECKIE" v-model="checkedVoivodeship">
+              <label for="mazowieckie">Mazowieckie</label>
+            </li>
+            <li>
+              <input type="checkbox" id="opolskie" value= "OPOLSKIE" v-model="checkedVoivodeship">
+              <label for="opolskie">Opolskie</label>
+            </li>
+            <li>
+              <input type="checkbox" id="podlaskie" value= "PODLASKIE" v-model="checkedVoivodeship">
+              <label for="podlaskie">Podlaskie</label>
+            </li>
+            <li>
+              <input type="checkbox" id="podkarpackie" value= "PODKARPACKIE" v-model="checkedVoivodeship">
+              <label for="podkarpackie">Podkarpackie</label>
+            </li>
+            <li>
+              <input type="checkbox" id="pomorskie" value= "POMORSKIE" v-model="checkedVoivodeship">
+              <label for="pomorskie">Pomorskie</label>
+            </li>
+            <li>
+              <input type="checkbox" id="swietokrzyskie" value= "ŚWIĘTOKRZYSKIE" v-model="checkedVoivodeship">
+              <label for="swietokrzyskie">Świętokrzyskie</label>
+            </li>
+            <li>
+              <input type="checkbox" id="slaskie" value= "ŚLĄSKIE" v-model="checkedVoivodeship">
+              <label for="slaskie">Śląskie</label>
+            </li>
+            <li>
+              <input type="checkbox" id="warminsko-mazurskie" value= "WARMIŃSKO-MAZURSKIE" v-model="checkedVoivodeship">
+              <label for="warminsko-mazurskie">Warmińsko-mazurskie</label>
+            </li>
+            <li>
+              <input type="checkbox" id="wielkopolskie" value= "WIELKOPOLSKIE" v-model="checkedVoivodeship">
+              <label for="wielkopolskie">Wielkopolskie</label>
+            </li>
+            <li>
+              <input type="checkbox" id="zachodniopomorskie" value= "ZACHODNIOPOMORSKIE" v-model="checkedVoivodeship">
+              <label for="zachodniopomorskie">Zachodniopomorskie</label>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <input type="checkbox" id="selectAllStatus" @click="selectAllStatus" checked>
+          <label for="selectAllStatus">Wybierz status stacji</label>
+          <ul>
+            <li>
+              <input type="checkbox" id="aktywny" value="aktywny" v-model="checkedStatus">
+              <label for="aktywny">Aktywny</label>
+            </li>
+            <li>
+              <input type="checkbox" id="nieaktywny" value="nieaktywny" v-model="checkedStatus">
+              <label for="nieaktywny">Nieaktywny</label>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <input type="checkbox" id="selectAllType" @click="selectAllType" checked>
+          <label for="selectAllType">Wybierz typ stacji</label>
+          <ul>
+            <li>
+              <input type="checkbox" id="przemyslowa" value="przemysłowa" v-model="checkedType">
+              <label for="przemyslowa">Przemysłowa</label>
+            </li>
+            <li>
+              <input type="checkbox" id="tlo" value="tło" v-model="checkedType">
+              <label for="tlo">Tło</label>
+            </li>
+            <li>
+              <input type="checkbox" id="komunikacyjna" value="komunikacyjna" v-model="checkedType">
+              <label for="komunikacyjna">Komunikacyjna</label>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <input type="checkbox" id="selectAllAreaType" @click="selectAllAreaType" checked>
+          <label for="selectAllAreaType">Wybierz rodzaj obszaru stacji</label>
+          <ul>
+            <li>
+              <input type="checkbox" id="podmiejski" value="podmiejski" v-model="checkedAreaType">
+              <label for="podmiejski">Podmiejski</label>
+            </li>
+            <li>
+              <input type="checkbox" id="miejski" value="miejski" v-model="checkedAreaType">
+              <label for="miejski">Miejski</label>
+            </li>
+            <li>
+              <input type="checkbox" id="pozamiejski" value="pozamiejski" v-model="checkedAreaType">
+              <label for="pozamiejski">Pozamiejski</label>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -183,7 +244,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .xD {
-    background-color: red;
+  .mapBox {
+    width: 100vw;
+    height: 100vh;
+    &--mapStyle {
+      width: 95%;
+      height: 80%;
+      margin: 2.5%;
+    }
   }
+
+  @media (min-width: 1080px) {
+  .mapBox {
+    display: flex;
+    &--mapStyle {
+      width: 70%;
+      height: 80%;
+      margin: 2.5%;
+    }
+  }
+
+  .mainList {
+    width: 20%;
+    margin: 2.5%;
+  }
+}
 </style>
