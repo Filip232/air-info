@@ -336,6 +336,8 @@ export default {
   .mainList {
     width: 20%;
     margin: 2.5%;
+    height: 80%;
+    overflow: auto;
   }
 
   .mainList h3{
