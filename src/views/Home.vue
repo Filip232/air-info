@@ -370,7 +370,7 @@ export default {
     content: '';
     position: absolute;
     right: 0;
-    top: 0;
+    top: -4px;
     width: 17px;
     height: 17px;
     border: 3px solid white;
