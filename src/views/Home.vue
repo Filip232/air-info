@@ -17,126 +17,190 @@
       </Lmap>
       <ul class="mainList">
         <li>
-          <h3>Wybierz wszystkie województwa</h3>
-          <input type="checkbox" id="selectAllVoivodeship" @click="selectAllVoivodeship" checked>
-          <label for="selectAllVoivodeship">Zaznacz/Odznacz wszystkie</label>
+          <h3>Wybierz województwa</h3>
           <ul>
             <li>
+              <input type="checkbox" id="selectAllVoivodeship" @click="selectAllVoivodeship" checked>
+              <label for="selectAllVoivodeship">
+                <h5>Zaznacz/Odznacz wszystkie</h5>
+              </label>
+            </li>
+            <li>
               <input type="checkbox" id="dolnoslaskie" value="DOLNOŚLĄSKIE" v-model="checkedVoivodeship">
-              <label for="dolnoslaskie">Dolnośląskie</label>
+              <label for="dolnoslaskie">
+                <h5>Dolnośląskie</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="kujawsko-pomorskie" value= "KUJAWSKO-POMORSKIE" v-model="checkedVoivodeship">
-              <label for="kujawsko-pomorskie">Kujawsko-pomorskie</label>
+              <label for="kujawsko-pomorskie">
+                <h5>Kujawsko-pomorskie</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="lubelskie" value="LUBELSKIE" v-model="checkedVoivodeship">
-              <label for="lubelskie">Lubelskie</label>
+              <label for="lubelskie">
+                <h5>Lubelskie</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="lodzkie" value="ŁÓDZKIE" v-model="checkedVoivodeship">
-              <label for="lodzkie">Łódzkie</label>
+              <label for="lodzkie">
+                <h5>Łódzkie</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="lubuskie" value= "LUBUSKIE" v-model="checkedVoivodeship">
-              <label for="lubuskie">Lubuskie</label>
+              <label for="lubuskie">
+                <h5>Lubuskie</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="malopolskie" value= "MAŁOPOLSKIE" v-model="checkedVoivodeship">
-              <label for="malopolskie">Małopolskie</label>
+              <label for="malopolskie">
+                <h5>Małopolskie</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="mazowieckie" value= "MAZOWIECKIE" v-model="checkedVoivodeship">
-              <label for="mazowieckie">Mazowieckie</label>
+              <label for="mazowieckie">
+                <h5>Mazowieckie</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="opolskie" value= "OPOLSKIE" v-model="checkedVoivodeship">
-              <label for="opolskie">Opolskie</label>
+              <label for="opolskie">
+                <h5>Opolskie</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="podlaskie" value= "PODLASKIE" v-model="checkedVoivodeship">
-              <label for="podlaskie">Podlaskie</label>
+              <label for="podlaskie">
+                <h5>Podlaskie</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="podkarpackie" value= "PODKARPACKIE" v-model="checkedVoivodeship">
-              <label for="podkarpackie">Podkarpackie</label>
+              <label for="podkarpackie">
+                <h5>Podkarpackie</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="pomorskie" value= "POMORSKIE" v-model="checkedVoivodeship">
-              <label for="pomorskie">Pomorskie</label>
+              <label for="pomorskie">
+                <h5>Pomorskie</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="swietokrzyskie" value= "ŚWIĘTOKRZYSKIE" v-model="checkedVoivodeship">
-              <label for="swietokrzyskie">Świętokrzyskie</label>
+              <label for="swietokrzyskie">
+                <h5>Świętokrzyskie</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="slaskie" value= "ŚLĄSKIE" v-model="checkedVoivodeship">
-              <label for="slaskie">Śląskie</label>
+              <label for="slaskie">
+                <h5>Śląskie</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="warminsko-mazurskie" value= "WARMIŃSKO-MAZURSKIE" v-model="checkedVoivodeship">
-              <label for="warminsko-mazurskie">Warmińsko-mazurskie</label>
+              <label for="warminsko-mazurskie">
+                <h5>Warmińsko-mazurskie</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="wielkopolskie" value= "WIELKOPOLSKIE" v-model="checkedVoivodeship">
-              <label for="wielkopolskie">Wielkopolskie</label>
+              <label for="wielkopolskie">
+                <h5>Wielkopolskie</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="zachodniopomorskie" value= "ZACHODNIOPOMORSKIE" v-model="checkedVoivodeship">
-              <label for="zachodniopomorskie">Zachodniopomorskie</label>
+              <label for="zachodniopomorskie">
+                <h5>Zachodniopomorskie</h5>
+              </label>
             </li>
           </ul>
         </li>
         <li>
           <h3>Wybierz status stacji</h3>
-          <input type="checkbox" id="selectAllStatus" @click="selectAllStatus" checked>
-          <label for="selectAllStatus">Zaznacz/odznacz wszystkie</label>
           <ul>
             <li>
+              <input type="checkbox" id="selectAllStatus" @click="selectAllStatus" checked>
+              <label for="selectAllStatus">
+                <h5>Zaznacz/odznacz wszystkie</h5>
+              </label>
+            </li>
+            <li>
               <input type="checkbox" id="aktywny" value="aktywny" v-model="checkedStatus">
-              <label for="aktywny">Aktywny</label>
+              <label for="aktywny">
+                <h5>Aktywny</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="nieaktywny" value="nieaktywny" v-model="checkedStatus">
-              <label for="nieaktywny">Nieaktywny</label>
+              <label for="nieaktywny">
+                <h5>Nieaktywny</h5>
+              </label>
             </li>
           </ul>
         </li>
         <li>
           <h3>Wybierz typ stacji</h3>
-          <input type="checkbox" id="selectAllType" @click="selectAllType" checked>
-          <label for="selectAllType">Zaznacz/odznacz wszystkie</label>
           <ul>
             <li>
+              <input type="checkbox" id="selectAllType" @click="selectAllType" checked>
+              <label for="selectAllType">
+                <h5>Zaznacz/odznacz wszystkie</h5>
+              </label>
+            </li>
+            <li>
               <input type="checkbox" id="przemyslowa" value="przemysłowa" v-model="checkedType">
-              <label for="przemyslowa">Przemysłowa</label>
+              <label for="przemyslowa">
+                <h5>Przemysłowa</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="tlo" value="tło" v-model="checkedType">
-              <label for="tlo">Tło</label>
+              <label for="tlo">
+                <h5>Tło</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="komunikacyjna" value="komunikacyjna" v-model="checkedType">
-              <label for="komunikacyjna">Komunikacyjna</label>
+              <label for="komunikacyjna">
+                <h5>Komunikacyjna</h5>
+              </label>
             </li>
           </ul>
         </li>
         <li>
           <h3>Wybierz rodzaj obszaru stacji</h3>
-          <input type="checkbox" id="selectAllAreaType" @click="selectAllAreaType" checked>
-          <label for="selectAllAreaType">Zaznacz/odznacz wszystkie</label>
           <ul>
             <li>
+              <input type="checkbox" id="selectAllAreaType" @click="selectAllAreaType" checked>
+              <label for="selectAllAreaType">
+                <h5>Zaznacz/odznacz wszystkie</h5>
+              </label>
+            </li>
+            <li>
               <input type="checkbox" id="podmiejski" value="podmiejski" v-model="checkedAreaType">
-              <label for="podmiejski">Podmiejski</label>
+              <label for="podmiejski">
+                <h5>Podmiejski</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="miejski" value="miejski" v-model="checkedAreaType">
-              <label for="miejski">Miejski</label>
+              <label for="miejski">
+                <h5>Miejski</h5>
+              </label>
             </li>
             <li>
               <input type="checkbox" id="pozamiejski" value="pozamiejski" v-model="checkedAreaType">
-              <label for="pozamiejski">Pozamiejski</label>
+              <label for="pozamiejski">
+                <h5>Pozamiejski</h5>
+              </label>
             </li>
           </ul>
         </li>
@@ -248,11 +312,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+  $colorPrimary: #000501;
+  $colorSecondary: #73ab84;
+  $colorThird: #99d19c;
+  $colorBackground: #f7f0f5;
+
+  h3, h5 {
+    color: $colorPrimary;
+  }
+
   .mapBox {
     width: 100vw;
     height: 100vh;
+
     &--mapStyle {
-      width: 95%;
+      width: 70%;
       height: 80%;
       margin: 2.5%;
     }
@@ -270,6 +345,40 @@ export default {
 
   .mainList label{
     font-size: 16px;
+  }
+  //dodać klasę zamiast li
+  li {
+    margin: 10px;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input[type="checkbox"] + label {
+    position: relative;
+    cursor: pointer;
+    text-justify: center;
+  }
+
+  [type="checkbox"]:not(:checked) + label:after,
+  [type="checkbox"]:checked + label:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 17px;
+    height: 17px;
+    border: 3px solid white;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px $colorSecondary;
+    margin-right: 5px;
+  }
+
+  [type="checkbox"]:checked + label:after {
+    background-color: $colorThird;
+    border-color: white;
+    outline-color: $colorThird;
   }
 
   @media (min-width: 1080px) {
