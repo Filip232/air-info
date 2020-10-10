@@ -19,7 +19,7 @@
             <Popup :info="marker"></Popup>
           </LMarker>
         </template>
-        <LPolygon :lat-lngs="coordinates"></LPolygon>
+        <!--LPolygon :lat-lngs="coordinates"></LPolygon-->
       </Lmap>
       <ul class="mainList">
         <li>
