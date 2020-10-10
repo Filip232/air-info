@@ -1,17 +1,23 @@
 <template>
-  <div>
+  <div> 
     <div class="mapBox">
       <LMap :zoom="zoom" :center="center" class="mapBox--mapStyle">
         <LTileLayer :url="url" :attribution="attribution"></LTileLayer>
         <template v-for="marker in stations">
-        <LMarker :key="marker.nr" :lat-lng="convertIntoPosition(marker)" v-if="checkedVoivodeship.includes(marker.wojewodztwo) && checkedStatus.includes(marker.status) && checkedType.includes(marker.typStacji) && checkedAreaType.includes(marker.typObszaru)">
-          <LPopup v-if="marker.status === 'nieaktywny'" :content="'Kod stacji: ' + marker.kodStacji + 
-          '<br>Status: ' + marker.status + '<br>Typ stacji: ' + marker.typStacji + '<br>Typ obszaru: ' + marker.typObszaru + 
-          '<br>Data uruchomienia: ' + marker.dataUruchomienia + '<br>Data zamknięcia: ' + marker.dataZamkniecia" ></LPopup>
-          <LPopup v-if="marker.status === 'aktywny'" :content="'Kod stacji: ' + marker.kodStacji + 
-          '<br>Status: ' + marker.status + '<br>Typ stacji: ' + marker.typStacji + '<br>Typ obszaru: ' + marker.typObszaru + 
-          '<br>Data uruchomienia: ' + marker.dataUruchomienia" ></LPopup>
-        </LMarker>
+          <LMarker :key="marker.nr" :lat-lng="convertIntoPosition(marker)" v-if="checkedVoivodeship.includes(marker.wojewodztwo) && checkedStatus.includes(marker.status) && checkedType.includes(marker.typStacji) && checkedAreaType.includes(marker.typObszaru)">
+            <LIcon>
+              <svg v-if="marker.typStacji === 'tło'" :class="{'red':marker.typObszaru === 'miejski','orange':marker.typObszaru === 'podmiejski','yellow':marker.typObszaru === 'pozamiejski' }">
+                <use href="#background"/>  
+              </svg>
+              <svg v-else-if="marker.typStacji === 'przemysłowa'" :class="{'red':marker.typObszaru === 'miejski','orange':marker.typObszaru === 'podmiejski','yellow':marker.typObszaru === 'pozamiejski' }">
+                <use href="#industry"/>  
+              </svg>
+              <svg v-else-if="marker.typStacji === 'komunikacyjna'" :class="{'red':marker.typObszaru === 'miejski','orange':marker.typObszaru === 'podmiejski','yellow':marker.typObszaru === 'pozamiejski' }">
+                <use href="#communication"/>
+              </svg>
+            </LIcon>
+            <Popup :info="marker"></Popup>
+          </LMarker>
         </template>
         <LPolygon :lat-lngs="coordinates"></LPolygon>
       </Lmap>
@@ -159,18 +165,27 @@
               <input type="checkbox" id="przemyslowa" value="przemysłowa" v-model="checkedType">
               <label for="przemyslowa">
                 <h5>Przemysłowa</h5>
+                <svg>
+                  <use href="#industry"/>  
+                </svg>
               </label>
             </li>
             <li>
               <input type="checkbox" id="tlo" value="tło" v-model="checkedType">
               <label for="tlo">
                 <h5>Tło</h5>
+                <svg>
+                  <use href="#background"/>  
+                </svg>
               </label>
             </li>
             <li>
               <input type="checkbox" id="komunikacyjna" value="komunikacyjna" v-model="checkedType">
               <label for="komunikacyjna">
-                <h5>Komunikacyjna</h5>
+                Komunikacyjna
+                <svg>
+                  <use href="#communication"/>  
+                </svg>
               </label>
             </li>
           </ul>
@@ -188,18 +203,21 @@
               <input type="checkbox" id="podmiejski" value="podmiejski" v-model="checkedAreaType">
               <label for="podmiejski">
                 <h5>Podmiejski</h5>
+                <div class="orange-div"></div>
               </label>
             </li>
             <li>
               <input type="checkbox" id="miejski" value="miejski" v-model="checkedAreaType">
               <label for="miejski">
                 <h5>Miejski</h5>
+                <div class="red-div"></div>
               </label>
             </li>
             <li>
               <input type="checkbox" id="pozamiejski" value="pozamiejski" v-model="checkedAreaType">
               <label for="pozamiejski">
                 <h5>Pozamiejski</h5>
+                <div class="yellow-div"></div>
               </label>
             </li>
           </ul>
@@ -212,8 +230,10 @@
 <script>
 // @ is an alias to /src
 import L from 'leaflet';
-import { LMap, LTileLayer, LMarker, LPopup, LPolygon} from 'vue2-leaflet';
+import { LMap, LTileLayer, LMarker, LPopup, LPolygon, LIcon} from 'vue2-leaflet';
 import data from '../data/json_meta.json';
+import pm10 from '../data/PM10_statsy.json';
+import Popup from '../components/Popup.vue';
 
 export default {
   name: 'Home',
@@ -222,7 +242,9 @@ export default {
     LTileLayer,
     LMarker,
     LPopup,
-    LPolygon
+    LPolygon,
+    LIcon,
+    Popup
   },
   data() {
     return {
@@ -231,6 +253,7 @@ export default {
       url:'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       attribution:'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       data: data,
+      pm10: pm10,
       display: true,
       stations: data,
       checkedVoivodeship: ['DOLNOŚLĄSKIE','KUJAWSKO-POMORSKIE','LUBELSKIE','ŁÓDZKIE','LUBUSKIE','MAŁOPOLSKIE','ZACHODNIOPOMORSKIE','WIELKOPOLSKIE','WARMIŃSKO-MAZURSKIE','ŚLĄSKIE','MAZOWIECKIE','OPOLSKIE','PODLASKIE','PODKARPACKIE','POMORSKIE','ŚWIĘTOKRZYSKIE'],
@@ -272,7 +295,7 @@ export default {
       }else{
         return checkbox.checked = true;
       }
-    }
+    },
   },
   methods: {
     convertIntoPosition(station){
@@ -280,6 +303,7 @@ export default {
       return position
     },
     selectAllVoivodeship(){
+      console.log(this.pm10.PM10[0].Województwo);
       if(this.checkedVoivodeship.length === 16){
         this.checkedVoivodeship = [];
         return
@@ -306,7 +330,7 @@ export default {
         return
       }
       this.checkedAreaType = ['podmiejski','miejski','pozamiejski'];
-    }
+    },
   }
 }
 </script>
@@ -348,8 +372,18 @@ export default {
   }
 
   .mainList label{
+    display: flex;
+    padding-left: 30px;
+    align-items: center;
     font-size: 16px;
   }
+
+  .mainList label svg{
+    margin-left: 10px;
+    height: 20px;
+    width: 20px;
+  }
+
   //dodać klasę zamiast li
   li {
     margin: 10px;
@@ -365,11 +399,11 @@ export default {
     text-justify: center;
   }
 
-  [type="checkbox"]:not(:checked) + label:after,
-  [type="checkbox"]:checked + label:after {
+  [type="checkbox"]:not(:checked) + label:before,
+  [type="checkbox"]:checked + label:before {
     content: '';
     position: absolute;
-    right: 0;
+    left: 0;
     top: -4px;
     width: 17px;
     height: 17px;
@@ -379,10 +413,49 @@ export default {
     margin-right: 5px;
   }
 
-  [type="checkbox"]:checked + label:after {
+  [type="checkbox"]:checked + label:before {
     background-color: $colorThird;
     border-color: white;
     outline-color: $colorThird;
+  }
+
+  .red{
+    fill: red;
+    height: 20px;
+    width: 20px;
+  }
+
+  .orange{
+    fill: orange;
+    height: 20px;
+    width: 20px;
+  }
+
+  .yellow{
+    fill: yellow;
+    height: 20px;
+    width: 20px;
+  }
+
+  .red-div{
+    height: 20px;
+    width: 20px;
+    background-color: red;
+    margin-left: 10px;
+  }
+
+  .orange-div{
+    height: 20px;
+    width: 20px;
+    background-color: orange;
+    margin-left: 10px;
+  }
+
+  .yellow-div{
+    height: 20px;
+    width: 20px;
+    background-color: yellow;
+    margin-left: 10px;
   }
 
   @media (min-width: 1080px) {
